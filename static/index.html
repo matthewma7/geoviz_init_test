@@ -3,13 +3,26 @@
 <head></head>
 
 <body>
-    <script type="text/javascript" src="//dev-developer.bsvecosystem.net/sdk/api/BSVE.API.js"></script>
+    <script type="text/javascript" src="BSVE.API.js"></script>
     <script>
-        document.write('hello');
+        document.write('This is a BSVE.init() test application');
 
-        BSVE.init(function() {
-            console.log('init callback'); 
-        });
+        if (Math.random() < 0.5) {
+            console.log('normal init');
+            BSVE.init(function () {
+                console.log('init callback');
+            });
+        }
+        else {
+            console.log('delayed init');
+            setTimeout(function () {
+                BSVE.init(function () {
+                    // This won't be called
+                    console.log('delayed init callback');
+                });
+            }, 0);
+        }
+
     </script>
 </body>
 
